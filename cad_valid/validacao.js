@@ -204,12 +204,12 @@ function validaestado() {
 
 
 function mascaraCep(cep) {
-    return cep.replace(/\D/g, "")                // Remove tudo o que não for número
-              .replace(/(\d{5})(\d)/, "$1-$2");  // Adiciona o hífen após o quinto dígito
+    return cep.replace(/\D/g, "")               
+              .replace(/(\d{5})(\d)/, "$1-$2");  
 }
 
 function validaCep() {
-    const cep = document.getElementById("cep").value.replace(/\D/g, ""); // Remove qualquer caractere não numérico
+    const cep = document.getElementById("cep").value.replace(/\D/g, ""); 
     const mensagemErroCep = document.getElementById("mensagem-erro-cep");
 
     // Aplica a máscara no campo de CEP
@@ -224,14 +224,14 @@ function validaCep() {
     return true;
 }
 
-// Adiciona o evento de input para o campo de CEP
+
 document.getElementById("cep").addEventListener("input", function(event) {
-    // Bloqueia a digitação de qualquer caractere não numérico
+   
     if (/[^0-9]/.test(event.data)) {
-        event.preventDefault();  // Impede a digitação de caracteres não numéricos
+        event.preventDefault();  
     }
     
-    // Aplica a máscara enquanto o usuário digita
+    
     this.value = mascaraCep(this.value);
 });
 
@@ -268,11 +268,10 @@ function validaCpf() {
     const pesos1 = [10, 9, 8, 7, 6, 5, 4, 3, 2];
     const pesos2 = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
 
-    // Calcula os dois dígitos verificadores
     const digito1 = calcularDigito(cpf.slice(0, 9), pesos1);
     const digito2 = calcularDigito(cpf.slice(0, 10), pesos2);
 
-    // Verifica se os dígitos verificadores estão corretos
+    
     if (cpf === cpf.slice(0, 9) + digito1 + digito2) {
         mensagemErroCpf.textContent = "OK";
         mensagemErroCpf.style.color = "green";
